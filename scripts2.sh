@@ -64,9 +64,9 @@ modificar el archivo polybar nombrar [bar/examples] por [bar/bar1] como en el ar
 '
 echo "agregando lineas al archivo ~/.config/bspwm/bspwmrc"
 
-echo '$HOME/.config/polybar/launch.sh' > ~/.config/bspwm/bspwmrc
+echo '$HOME/.config/polybar/launch.sh' >> ~/.config/bspwm/bspwmrc
 
-echo '
+echo "
 alias buscar='sudo apt search'
 alias instalar='sudo apt install'
 alias l='ls -l'
@@ -78,7 +78,7 @@ alias eliminar='sudo apt-get --purge remove'
 alias v='vim'
 neofetch
 
-' >> ~/.bashrc
+" >> ~/.bashrc
 
 source ~/.bashrc
 
