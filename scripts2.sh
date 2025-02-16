@@ -66,21 +66,7 @@ echo "agregando lineas al archivo ~/.config/bspwm/bspwmrc"
 
 echo '$HOME/.config/polybar/launch.sh' >> ~/.config/bspwm/bspwmrc
 
-echo "
-alias buscar='sudo apt search'
-alias instalar='sudo apt install'
-alias l='ls -l'
-alias ll='ls -la'
-alias nf='neofetch'
-alias e='exit'
-alias act='sudo apt update && sudo apt upgrade'
-alias eliminar='sudo apt-get --purge remove'
-alias v='vim'
-neofetch
 
-" >> ~/.bashrc
-
-source ~/.bashrc
 
 
 
