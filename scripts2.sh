@@ -1,8 +1,6 @@
 #!/bin/bash
 
-
 #mi scripts para instalar Bspwm 
-
 
 sudo apt install -y xorg xterm lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi jgmenu suckless-tools tint2 feh nitrogen tilix picom conky dunst nm-tray nm-tray-l10n xtitle thunar arandr curl htop git wget inxi vim build-essential devscripts glances neofetch
 
@@ -58,18 +56,10 @@ cp *.rasi ~/.local/share/rofi/themes/
 
 cd
 echo 'configurar las siguientes lineas en el archivo bspwm:
-pgrep -x picom > /deb/vul || picom --config $HOME/.config/picom/picom.conf 
+pgrep -x picom > /dev/null || picom --config $HOME/.config/picom/picom.conf 
 modificar el archivo polybar nombrar [bar/examples] por [bar/bar1] como en el archivo launch.sh
 
 '
 echo "agregando lineas al archivo ~/.config/bspwm/bspwmrc"
 
 echo '$HOME/.config/polybar/launch.sh' >> ~/.config/bspwm/bspwmrc
-
-
-
-
-
-
-
-
