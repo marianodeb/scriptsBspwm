@@ -2,13 +2,21 @@
 
 #mi scripts para instalar Bspwm 
 
-sudo apt install -y xorg xterm lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi jgmenu suckless-tools tint2 feh nitrogen tilix picom conky dunst nm-tray nm-tray-l10n xtitle thunar arandr curl htop git wget inxi vim build-essential devscripts glances neofetch
+sudo apt install -y xorg xterm lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi jgmenu suckless-tools tint2 feh nitrogen tilix picom conky dunst nm-tray nm-tray-l10n xtitle thunar arandr curl htop wget inxi vim build-essential devscripts glances
+
+sudo apt install -y build-essential make
+sudo apt install -y htop tree zip unzip
+sudo apt install -y gcc g++ python3 python3-pip perl ruby
+sudo apt install -y dysk # altervativa mejor al comando df 
+sudo apt install -y git curl 
+sudo apt install -y default-jre # java
+sudo apt install -y mpv vlc #reproductores de videos
 
 echo "Creando directorios bspwm polybar sxhkd conky"
 
 mkdir -p ~/.config/{bspwm,polybar,sxhkd,conky,jgmenu}
 
-echo "copiando archivos examples de bspwm polybar sxhkd conky "
+echo "copiando archivos examples de bspwm polybar sxhkd conky " xtitl
 
 echo "copiando archivo bspwm"
 cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm
@@ -41,7 +49,7 @@ echo "Bars launched..."' > ~/.config/polybar/launch.sh
 
 echo 'creando carpetas del usuario'
 
-#sudo apt install xdg-user-dirs
+#sudo apt install xdg-user-dirs 	esto crea los direcotrio Descarga Imagens etc
 xdg-user-dirs-update
 
 echo 'agregar temas para rofi'
@@ -55,11 +63,19 @@ mkdir -p ~/.local/share/rofi/themes/
 cp *.rasi ~/.local/share/rofi/themes/
 
 cd
-echo 'configurar las siguientes lineas en el archivo bspwm:
+echo 'agregar las siguientes lineas en el archivo bspwm:
 pgrep -x picom > /dev/null || picom --config $HOME/.config/picom/picom.conf 
 modificar el archivo polybar nombrar [bar/examples] por [bar/bar1] como en el archivo launch.sh
 
 '
-echo "agregando lineas al archivo ~/.config/bspwm/bspwmrc"
+echo "agregando lineas al archivo ~/.config/bspwm/bspwmrc debe ir al inicio"
 
-echo '$HOME/.config/polybar/launch.sh' >> ~/.config/bspwm/bspwmrc
+echo '$HOME/.config/polybar/launch.sh  &' >> ~/.config/bspwm/bspwmrc
+
+curl -LO https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
+
+sudo apt install btop -y
+
+echo 'descargar comandos propios https://github.com/marianodeb/scriptscomandos.git'
+git clone https://github.com/marianodeb/scriptscomandos.git
+
