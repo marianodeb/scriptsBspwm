@@ -53,13 +53,15 @@ cp *.rasi ~/.local/share/rofi/themes/
 
 cd
 echo 'agregar las siguientes lineas en el archivo bspwm:
-pgrep -x picom > /dev/null || picom --config $HOME/.config/picom/picom.conf 
+echo 'pgrep -x picom > /dev/null || picom --config $HOME/.config/picom/picom.conf' >> ~/.config/bspwm/bspwmrc
 modificar el archivo polybar nombrar [bar/examples] por [bar/bar1] como en el archivo launch.sh
 
 '
 echo "agregando lineas al archivo ~/.config/bspwm/bspwmrc debe ir al inicio"
 
-echo '$HOME/.config/polybar/launch.sh  &' >> ~/.config/bspwm/bspwmrc
+#echo '$HOME/.config/polybar/launch.sh  &' >> ~/.config/bspwm/bspwmrc
+# Esto inserta la línea en la segunda línea del archivo (después del #!/bin/bash)
+sed -i '2i $HOME/.config/polybar/launch.sh &' ~/.config/bspwm/bspwmrc
 
 curl -LO https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
 

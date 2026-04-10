@@ -6,8 +6,8 @@ echo 'deb https://deb.debian.org/debian/ trixie main contrib non-free non-free-f
 deb-src https://deb.debian.org/debian/ trixie main contrib non-free non-free-firmware
 
 
-deb https://debian.org/debian-security/ trixie-security main contrib non-free non-free-firmware
-deb-src https://debian.org/debian-security/ trixie-security main contrib non-free non-free-firmware
+deb https://deb.debian.org/debian-security/ trixie-security main contrib non-free non-free-firmware
+deb-src https://deb.debian.org/debian-security/ trixie-security main contrib non-free non-free-firmware
 
 
 deb https://deb.debian.org/debian/ trixie-updates main contrib non-free non-free-firmware

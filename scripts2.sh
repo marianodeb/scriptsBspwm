@@ -14,7 +14,7 @@ ENTORNO_VISUAL=(
     polybar rofi picom           # Barra, menú y transparencias
     feh nitrogen                 # Fondos de pantalla
     dunst                        # Notificaciones
-    conky                        # Monitor de sistema en escritorio
+#    conky                        # Monitor de sistema en escritorio
     lxappearance                 # (Sugerido) Para cambiar temas e iconos
 )
 
