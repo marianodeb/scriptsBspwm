@@ -1,81 +1,63 @@
 #!/bin/bash
 
-#mi scripts para instalar Bspwm 
+# --- CATEGORÍAS DE PAQUETES ---
 
-sudo apt install -y xorg xterm lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi jgmenu suckless-tools tint2 feh nitrogen tilix picom conky dunst nm-tray nm-tray-l10n xtitle thunar arandr curl htop wget inxi vim build-essential devscripts glances
+# 1. Base del Sistema y Gráficos
+BASE_SISTEMA=(
+    xorg xterm                   # Servidor gráfico y terminal básica
+    lightdm lightdm-gtk-greeter  # Gestor de inicio de sesión
+    bspwm sxhkd                  # Gestor de ventanas y de atajos
+)
 
-sudo apt install -y build-essential make
-sudo apt install -y htop tree zip unzip
-sudo apt install -y gcc g++ python3 python3-pip perl ruby
-sudo apt install -y dysk # altervativa mejor al comando df 
-sudo apt install -y git curl 
-sudo apt install -y default-jre # java
-sudo apt install -y mpv vlc #reproductores de videos
+# 2. Entorno y Estética
+ENTORNO_VISUAL=(
+    polybar rofi picom           # Barra, menú y transparencias
+    feh nitrogen                 # Fondos de pantalla
+    dunst                        # Notificaciones
+    conky                        # Monitor de sistema en escritorio
+    lxappearance                 # (Sugerido) Para cambiar temas e iconos
+)
 
-echo "Creando directorios bspwm polybar sxhkd conky"
+# 3. Herramientas de Archivos y Sistema
+UTILIDADES=(
+    thunar                       # Gestor de archivos ligero
+    tilix                        # Tu terminal favorita
+    htop btop glances            # Monitoreo de procesos
+    dysk                         # Alternativa favorita a df
+    tree zip unzip               # Manejo de directorios y compresión
+    curl wget                    # Descargas y repositorios
+    inxi                         # Información de hardware
+    arandr                       # Configuración de monitores
+    nm-tray                      # Icono de red en la barra
+)
 
-mkdir -p ~/.config/{bspwm,polybar,sxhkd,conky,jgmenu}
+# 4. Desarrollo y Programación
+# Nota: build-essential ya incluye gcc, g++, make y librerías base
+DESARROLLO=(
+    build-essential devscripts   # Herramientas de compilación
+    python3 python3-pip          # Entorno Python
+    perl ruby                    # Otros lenguajes
+    default-jre                  # Java
+    vim micro                    # Editores de texto por terminal
+)
 
-echo "copiando archivos examples de bspwm polybar sxhkd conky " xtitl
+# 5. Multimedia
+MULTIMEDIA=(
+    mpv vlc                      # Reproductores de video
+    pamixer alsa-utils           # (Sugerido) Control de volumen para Polybar
+)
 
-echo "copiando archivo bspwm"
-cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm
-echo "copiando archivo sxhkd"
-cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd
-echo "copiando archivo polybar"
-cp /usr/share/doc/polybar/examples/config.ini ~/.config/polybar
-echo "copiando archivo conky"
-cp /etc/conky/conky.conf ~/.config/conky
-echo "creando y copiando scripts launch.sh"
+# --- EJECUCIÓN ---
 
-touch ~/.config/polybar/launch.sh
-chmod +x ~/.config/polybar/launch.sh
+echo "Iniciando instalación organizada..."
+sudo apt update
 
+# Instalamos todo junto en un solo comando
+sudo apt install -y \
+    "${BASE_SISTEMA[@]}" \
+    "${ENTORNO_VISUAL[@]}" \
+    "${UTILIDADES[@]}" \
+    "${DESARROLLO[@]}" \
+    "${MULTIMEDIA[@]}"
 
-echo '#!/usr/bin/env bash
-
-# Terminate already running bar instances
-# If all your bars have ipc enabled, you can use 
-polybar-msg cmd quit
-# Otherwise you can use the nuclear option:
-# killall -q polybar
-
-# Launch bar1 and bar2
-echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
-polybar bar1 2>&1 | tee -a /tmp/polybar1.log & disown
-#polybar bar2 2>&1 | tee -a /tmp/polybar2.log & disown
-
-echo "Bars launched..."' > ~/.config/polybar/launch.sh
-
-echo 'creando carpetas del usuario'
-
-#sudo apt install xdg-user-dirs 	esto crea los direcotrio Descarga Imagens etc
-xdg-user-dirs-update
-
-echo 'agregar temas para rofi'
-
-
-git clone https://github.com/lr-tech/rofi-themes-collection.git
-cd rofi-themes-collection/themes
-
-mkdir -p ~/.local/share/rofi/themes/
-
-cp *.rasi ~/.local/share/rofi/themes/
-
-cd
-echo 'agregar las siguientes lineas en el archivo bspwm:
-pgrep -x picom > /dev/null || picom --config $HOME/.config/picom/picom.conf 
-modificar el archivo polybar nombrar [bar/examples] por [bar/bar1] como en el archivo launch.sh
-
-'
-echo "agregando lineas al archivo ~/.config/bspwm/bspwmrc debe ir al inicio"
-
-echo '$HOME/.config/polybar/launch.sh  &' >> ~/.config/bspwm/bspwmrc
-
-curl -LO https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
-
-sudo apt install btop -y
-
-echo 'descargar comandos propios https://github.com/marianodeb/scriptscomandos.git'
-git clone https://github.com/marianodeb/scriptscomandos.git
-
+echo "Instalación completada con éxito."
