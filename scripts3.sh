@@ -1,5 +1,48 @@
 #!/bin/bash
 
+
+
+# alias
+echo "
+alias apagar='sudo shutdown now'
+alias reiniciar='sudo reboot now'
+alias ff='fastfetch'
+alias nv='~/AppimagePaketes/nvim-linux-x86_64.appimage'
+alias p3='python3'
+alias buscar='sudo apt search'
+alias instalar='sudo apt install'
+#alias l='ls -l'
+alias l='lsd -l'
+#alias ld='ls -l --group-directories-first'
+alias ld='lsd -l --group-directories-first'
+#alias ll='ls -la'
+alias ll='lsd -la'
+#alias lld='ls -la --group-directories-first'
+alias lld='lsd -la --group-directories-first'
+#alias nf='neofetch' desactualizado
+alias e='exit'
+alias act='sudo apt update && sudo apt upgrade -y'
+alias eliminar='sudo apt-get --purge remove'
+
+alias gi='git init'
+alias ga='git add'
+alias gad='git add .'
+alias gc='git commit'
+alias gp='git push'
+alias gs='git status'
+alias gss='git status -s'
+alias gl='git log'
+alias glo='git log --oneline'
+alias gb='git git branch'
+alias gcl='git clone'
+alias raspby='ssh minimini@192.168.0.27'
+alias pingraspby='ping 192.168.0.27'
+alias cerrarss='bspc quit'
+# ff ejecuta fastfecth
+ff
+
+" >> ~/.bashrc
+
 #mi scripts para instalar Bspwm 
 echo "Creando directorios bspwm polybar sxhkd conky"
 
