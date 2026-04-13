@@ -40,7 +40,8 @@ alias pingraspby='ping 192.168.0.27'
 alias cerrarss='bspc quit'
 # ff ejecuta fastfecth
 ff
-
+#Esta linea de la variable es para que kitty funcione
+export PATH="$HOME/.local/bin:$PATH"
 " >> ~/.bashrc
 
 #mi scripts para instalar Bspwm 
@@ -104,11 +105,11 @@ sed -i '2i $HOME/.config/polybar/launch.sh &' ~/.config/bspwm/bspwmrc
 
 curl -LO https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
 
-echo 'agregar las siguientes lineas en el archivo bspwm:
+echo 'agregar las siguientes lineas en el archivo bspwm:'
 echo 'pgrep -x picom > /dev/null || picom --config $HOME/.config/picom/picom.conf' >> ~/.config/bspwm/bspwmrc
-modificar el archivo polybar nombrar [bar/examples] por [bar/bar1] como en el archivo launch.sh
+#modificar el archivo polybar nombrar [bar/examples] por [bar/bar1] como en el archivo launch.sh
 
-'
+
 
 echo 'descargar comandos propios https://github.com/marianodeb/scriptscomandos.git'
 git clone https://github.com/marianodeb/scriptscomandos.git
@@ -157,3 +158,7 @@ echo "************************"
 # Escribimos en la terminal: "kitten themes" y saldra el menu de tehme
 # Para seleccionar el thema y quede guardado seleccionar la opciion M 
 # Luego se creara un archivo con los themas.
+
+echo ' NOTA: modificar atajao en sxhkdrc para kitty: /home/TU_USUARIO/.local/bin/kitty'
+
+
