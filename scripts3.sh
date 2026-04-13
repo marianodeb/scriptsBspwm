@@ -95,11 +95,7 @@ mkdir -p ~/.local/share/rofi/themes/
 cp *.rasi ~/.local/share/rofi/themes/
 
 cd
-echo 'agregar las siguientes lineas en el archivo bspwm:
-echo 'pgrep -x picom > /dev/null || picom --config $HOME/.config/picom/picom.conf' >> ~/.config/bspwm/bspwmrc
-modificar el archivo polybar nombrar [bar/examples] por [bar/bar1] como en el archivo launch.sh
 
-'
 echo "agregando lineas al archivo ~/.config/bspwm/bspwmrc debe ir al inicio"
 
 #echo '$HOME/.config/polybar/launch.sh  &' >> ~/.config/bspwm/bspwmrc
@@ -108,8 +104,56 @@ sed -i '2i $HOME/.config/polybar/launch.sh &' ~/.config/bspwm/bspwmrc
 
 curl -LO https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-musl_1.1.5_amd64.deb
 
+echo 'agregar las siguientes lineas en el archivo bspwm:
+echo 'pgrep -x picom > /dev/null || picom --config $HOME/.config/picom/picom.conf' >> ~/.config/bspwm/bspwmrc
+modificar el archivo polybar nombrar [bar/examples] por [bar/bar1] como en el archivo launch.sh
 
+'
 
 echo 'descargar comandos propios https://github.com/marianodeb/scriptscomandos.git'
 git clone https://github.com/marianodeb/scriptscomandos.git
 
+#!/bin/bash
+
+echo "************************"
+echo "*** Instalando kitty ***"
+echo "************************"
+
+#Descarga e instalacion
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
+# Crear el directorio bin
+mkdir -p ~/.local/bin
+
+# Crear enlaces simbolicos
+ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+
+# Agrefgar bin a al paht
+export PATH=$HOME/.local/bin:$PATH
+
+# Copiar el archivo kitty.desktop para que kitti aparezca en el menu de aplicaciones
+cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+
+# Esto hace que aparezca elicono en el menu de aplicaciones
+sed -i "s|Icon=kitty|Icon=$HOME/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
+sed -i "s|Exec=kitty|Exec=$HOME/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty.desktop
+
+update-desktop-database ~/.local/share/applications/
+
+echo "************************"
+echo "***** kitten themes ****"
+echo "************************"
+
+# link de computadoras y sensores instalacion y configuracion
+# https://www.youtube.com/watch?v=_oqf2WgEyxo
+# https://sw.kovidgoyal.net/kitty/
+# https://sw.kovidgoyal.net/kitty/conf/
+
+# CONFIGURACION
+# Crear el archivo kitty.conf en el directorio ~/.config/kitty
+# la mejor manera de crear el archivo kitty.conf es con: "Ctrl + shift + f2" donde viene todala configuracion comentada
+
+# Cambiar Thema   https://sw.kovidgoyal.net/kitty/kittens/themes/
+# Escribimos en la terminal: "kitten themes" y saldra el menu de tehme
+# Para seleccionar el thema y quede guardado seleccionar la opciion M 
+# Luego se creara un archivo con los themas.
