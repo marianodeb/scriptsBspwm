@@ -3,7 +3,9 @@
 
 
 # alias
-echo "
+cat << 'EOF' >> ~/.bashrc
+
+# --- Alias Personales ---
 alias apagar='sudo shutdown now'
 alias reiniciar='sudo reboot now'
 alias ff='fastfetch'
@@ -11,19 +13,15 @@ alias nv='~/AppimagePaketes/nvim-linux-x86_64.appimage'
 alias p3='python3'
 alias buscar='sudo apt search'
 alias instalar='sudo apt install'
-#alias l='ls -l'
 alias l='lsd -l'
-#alias ld='ls -l --group-directories-first'
 alias ld='lsd -l --group-directories-first'
-#alias ll='ls -la'
 alias ll='lsd -la'
-#alias lld='ls -la --group-directories-first'
 alias lld='lsd -la --group-directories-first'
-#alias nf='neofetch' desactualizado
 alias e='exit'
 alias act='sudo apt update && sudo apt upgrade -y'
 alias eliminar='sudo apt-get --purge remove'
 
+# --- Git Alias ---
 alias gi='git init'
 alias ga='git add'
 alias gad='git add .'
@@ -33,16 +31,20 @@ alias gs='git status'
 alias gss='git status -s'
 alias gl='git log'
 alias glo='git log --oneline'
-alias gb='git git branch'
+alias gb='git branch'
 alias gcl='git clone'
+
+# --- Otros ---
 alias raspby='ssh minimini@192.168.0.27'
 alias pingraspby='ping 192.168.0.27'
-alias cerrarss='bspc quit'
-# ff ejecuta fastfecth
+alias peke='ssh peke@192.168.0.41'
+alias pingpeke='ping 192.168.0.41'
+alias cerrarss='bspc quit' #cierra cesion de usuario
+
+# Ejecutar fastfetch al abrir
 ff
-#Esta linea de la variable es para que kitty funcione
-export PATH="$HOME/.local/bin:$PATH"
-" >> ~/.bashrc
+
+EOF
 
 #mi scripts para instalar Bspwm 
 echo "Creando directorios bspwm polybar sxhkd conky"
@@ -113,52 +115,5 @@ echo 'pgrep -x picom > /dev/null || picom --config $HOME/.config/picom/picom.con
 
 echo 'descargar comandos propios https://github.com/marianodeb/scriptscomandos.git'
 git clone https://github.com/marianodeb/scriptscomandos.git
-
-#!/bin/bash
-
-echo "************************"
-echo "*** Instalando kitty ***"
-echo "************************"
-
-#Descarga e instalacion
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-
-# Crear el directorio bin
-mkdir -p ~/.local/bin
-
-# Crear enlaces simbolicos
-ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
-
-# Agrefgar bin a al paht
-export PATH=$HOME/.local/bin:$PATH
-
-# Copiar el archivo kitty.desktop para que kitti aparezca en el menu de aplicaciones
-cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
-
-# Esto hace que aparezca elicono en el menu de aplicaciones
-sed -i "s|Icon=kitty|Icon=$HOME/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
-sed -i "s|Exec=kitty|Exec=$HOME/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty.desktop
-
-update-desktop-database ~/.local/share/applications/
-
-echo "************************"
-echo "***** kitten themes ****"
-echo "************************"
-
-# link de computadoras y sensores instalacion y configuracion
-# https://www.youtube.com/watch?v=_oqf2WgEyxo
-# https://sw.kovidgoyal.net/kitty/
-# https://sw.kovidgoyal.net/kitty/conf/
-
-# CONFIGURACION
-# Crear el archivo kitty.conf en el directorio ~/.config/kitty
-# la mejor manera de crear el archivo kitty.conf es con: "Ctrl + shift + f2" donde viene todala configuracion comentada
-
-# Cambiar Thema   https://sw.kovidgoyal.net/kitty/kittens/themes/
-# Escribimos en la terminal: "kitten themes" y saldra el menu de tehme
-# Para seleccionar el thema y quede guardado seleccionar la opciion M 
-# Luego se creara un archivo con los themas.
-
-echo ' NOTA: modificar atajao en sxhkdrc para kitty: /home/TU_USUARIO/.local/bin/kitty'
 
 

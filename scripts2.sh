@@ -22,6 +22,7 @@ ENTORNO_VISUAL=(
 UTILIDADES=(
     thunar                       # Gestor de archivos ligero
     tilix                        # Tu terminal favorita
+    kitty                        # Otra terminal
     htop btop glances            # Monitoreo de procesos
     dysk                         # Alternativa favorita a df
     tree zip unzip               # Manejo de directorios y compresión
