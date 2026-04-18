@@ -49,9 +49,9 @@ EOF
 #mi scripts para instalar Bspwm 
 echo "Creando directorios bspwm polybar sxhkd conky"
 
-mkdir -p ~/.config/{bspwm,polybar,sxhkd,conky,jgmenu}
+mkdir -p ~/.config/{bspwm,polybar,sxhkd,conky,jgmenu,picom}
 
-echo "copiando archivos examples de bspwm polybar sxhkd conky " xtitl
+echo "copiando archivos examples de bspwm polybar sxhkd conky picon "
 
 echo "copiando archivo bspwm"
 cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm
@@ -59,8 +59,11 @@ echo "copiando archivo sxhkd"
 cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd
 echo "copiando archivo polybar"
 cp /usr/share/doc/polybar/examples/config.ini ~/.config/polybar
-echo "copiando archivo conky"
-cp /etc/conky/conky.conf ~/.config/conky
+#echo "copiando archivo conky"
+#cp /etc/conky/conky.conf ~/.config/conky
+echo "copiando archivo picom"
+cp /usr/share/doc/picom/examples/picom.sample.conf ~/.config/picom/picom.cof
+
 echo "creando y copiando scripts launch.sh"
 
 touch ~/.config/polybar/launch.sh
@@ -112,8 +115,16 @@ echo 'pgrep -x picom > /dev/null || picom --config $HOME/.config/picom/picom.con
 #modificar el archivo polybar nombrar [bar/examples] por [bar/bar1] como en el archivo launch.sh
 
 
+# Si no funciona posicionar la linea debajo de: pgrep -x sxhkd > /dev/null || sxhkd &
+echo 'pgrep -x nm-tray > /dev/null || nm-tray &' >> ~/.config/bspwm/bspwmrc
+
 
 echo 'descargar comandos propios https://github.com/marianodeb/scriptscomandos.git'
 git clone https://github.com/marianodeb/scriptscomandos.git
 
 
+echo 'lxpolkit &' >> ~/.config/bspwm/bspwmrc
+# NOTAS
+# NOTAS#
+# Habilitar nitrogen gestor de fondo de pantallas agregar la siguietne linea a bspwmrc :
+# nitrogen --restore &

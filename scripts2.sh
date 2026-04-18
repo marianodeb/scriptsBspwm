@@ -16,6 +16,7 @@ ENTORNO_VISUAL=(
     dunst                        # Notificaciones
 #    conky                        # Monitor de sistema en escritorio
     lxappearance                 # (Sugerido) Para cambiar temas e iconos
+    lxpolkit                     # ventana aux. para introducir contraseñas 
 )
 
 # 3. Herramientas de Archivos y Sistema
@@ -30,6 +31,16 @@ UTILIDADES=(
     inxi                         # Información de hardware
     arandr                       # Configuración de monitores
     nm-tray                      # Icono de red en la barra
+    extrepo                      # Repositorio Externos para librewolf
+    picom                        # Compositor para transparencias y sombras
+    network-manager              # El servivio base para gestionar conexiones
+    bluez                        # Herramineta basica para bluetooth
+    blueman                      # Gestor grafico e icono de bandeja para bluetooth
+    psmisc                       # Contiene killall, fuser y pstree
+    xclip                        # Gestion del portapapeles (vital para Neovim)
+    brightnessctl                # Control de brillo de pantalla desde la terminal
+    playerctl                    # Controlar musica/videos (pausa, siguiente) con tecla
+    gvfs                         # Para que el explorador de archvios reconozca pendrive y redes
 )
 
 # 4. Desarrollo y Programación
@@ -61,4 +72,17 @@ sudo apt install -y \
     "${DESARROLLO[@]}" \
     "${MULTIMEDIA[@]}"
 
+
+
+# Habilitacion de librewolf e instalacion
+
+extrepo enable librewolf
+apt update
+apt install librewolf -y
+
+
 echo "Instalación completada con éxito."
+
+
+
+
