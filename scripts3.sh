@@ -6,6 +6,7 @@
 cat << 'EOF' >> ~/.bashrc
 
 # --- Alias Personales ---
+alias actualizarsistema="sudo apt update && sudo apt upgrade -y && flatpak update -y && sudo snap refresh"
 alias apagar='sudo shutdown now'
 alias reiniciar='sudo reboot now'
 alias ff='fastfetch'
@@ -20,6 +21,8 @@ alias lld='lsd -la --group-directories-first'
 alias e='exit'
 alias act='sudo apt update && sudo apt upgrade -y'
 alias eliminar='sudo apt-get --purge remove'
+
+
 
 # --- Git Alias ---
 alias gi='git init'
@@ -40,6 +43,19 @@ alias pingraspby='ping 192.168.0.27'
 alias peke='ssh peke@192.168.0.41'
 alias pingpeke='ping 192.168.0.41'
 alias cerrarss='bspc quit' #cierra cesion de usuario
+
+# --- flatpak ---
+alias actflat='flatpak update' # actualiza todo
+alias listaflat='flatpak list --app'
+alias eliminarflat='flatpak uninstall' # mas el id de la aplicacion
+alias eliminaflatt='flatpak uninstall --delete-data' # mas id elina todo + configuraciones
+alias limpiarflat='flatpak uninstall --unused' # limpia archivos obsoletos
+
+# --- snap ---
+alias actsnap='sudo snap refresh' # actualiza todos los snap
+alias listasnap='snap list'
+alias eliminarsnap='sudo snap remove' # mas nombre del paquete
+alias eliminasnapt='sudo snap remove --purge' # mas nombre del paquete elimina todo 
 
 # Ejecutar fastfetch al abrir
 ff
