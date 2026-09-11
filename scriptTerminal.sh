@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # Detener el script si ocurre algún error grave
@@ -26,7 +25,6 @@ echo "--------------------------------------------------------"
 cat "$HOME/.ssh/id_ed25519.pub"
 echo "--------------------------------------------------------"
 
-
 echo "*********************************************************"
 echo "****************** INSTALANDO KITTY *********************"
 echo "*********************************************************"
@@ -43,7 +41,7 @@ ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
 
 # Hacer el PATH persistente en el .bashrc
 if ! grep -q "$HOME/.local/bin" ~/.bashrc; then
-  echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >>~/.bashrc
 fi
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -54,25 +52,13 @@ sed -i "s|Exec=kitty|Exec=$HOME/.local/kitty.app/bin/kitty|g" ~/.local/share/app
 
 update-desktop-database ~/.local/share/applications/ || true
 
-
 echo "*********************************************************"
 echo "************************* YAZI **************************"
 echo "*********************************************************"
 
-# Instalar dependencias base e instalador de descomprimir (unzip)
-sudo apt update && sudo apt install -y build-essential ffmpeg poppler-utils fd-find ripgrep fzf zoxide 7zip jq resvg imagemagick wl-clipboard xclip unzip
-
-# Instalar Rust si no está instalado
-if ! command -v cargo &> /dev/null; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-  source "$HOME/.cargo/env"
-fi
-
-# Instalar Yazi compilado
-cargo install --force yazi-build
-
-# 5. Compilar usando el disco de tu usuario (ignora el espacio limitado de /tmp)para cuando tengamos poco espacio en /tmp especial para mv
-#CARGO_TARGET_DIR="$HOME/.cargo/tmp_build" cargo install --force yazi-build
+curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/share/keyrings/yazi-keyring.gpg >/dev/null
+echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main' | sudo tee /etc/apt/sources.list.d/yazi.list >/dev/null
+sudo apt update && sudo apt install yazi
 
 echo "*********************************************************"
 echo "*************** KITTY MARKDOWN VIEWER *******************"
@@ -87,7 +73,6 @@ chmod +x "$TMP_DIR/kitty-md.py"
 sudo mv "$TMP_DIR/kitty-md.py" /usr/local/bin/kitty-md
 rm -rf "$TMP_DIR"
 
-
 echo "*********************************************************"
 echo "********************* STARSHIP **************************"
 echo "*********************************************************"
@@ -95,12 +80,11 @@ echo "*********************************************************"
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 if ! grep -q 'starship init bash' ~/.bashrc; then
-  echo 'eval "$(starship init bash)"' >> ~/.bashrc
+  echo 'eval "$(starship init bash)"' >>~/.bashrc
 fi
 
 mkdir -p ~/.config
 starship preset gruvbox-rainbow -o ~/.config/starship.toml
-
 
 echo "*********************************************************"
 echo "**************** FUENTES Y CONFIG KITTY *****************"
@@ -128,7 +112,7 @@ fc-cache -fv
 
 # Configurar automáticamente la fuente dentro de kitty.conf
 mkdir -p ~/.config/kitty
-cat << 'EOF' > ~/.config/kitty/kitty.conf
+cat <<'EOF' >~/.config/kitty/kitty.conf
 font_family      0xProto Nerd Font
 bold_font        auto
 italic_font      auto
@@ -139,4 +123,3 @@ EOF
 echo "--------------------------------------------------------"
 echo " ¡Instalación completada! Reiniciá tu terminal o Kitty. "
 echo "--------------------------------------------------------"
-
