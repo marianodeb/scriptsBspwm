@@ -71,6 +71,9 @@ fi
 # Instalar Yazi compilado
 cargo install --force yazi-build
 
+# 5. Compilar usando el disco de tu usuario (ignora el espacio limitado de /tmp)para cuando tengamos poco espacio en /tmp especial para mv
+#CARGO_TARGET_DIR="$HOME/.cargo/tmp_build" cargo install --force yazi-build
+
 echo "*********************************************************"
 echo "*************** KITTY MARKDOWN VIEWER *******************"
 echo "*********************************************************"
