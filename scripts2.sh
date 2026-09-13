@@ -57,6 +57,9 @@ DESARROLLO=(
 MULTIMEDIA=(
     mpv vlc                      # Reproductores de video
     pamixer alsa-utils           # (Sugerido) Control de volumen para Polybar
+    cmus                         # Reproductor de musica x terminal
+    nomacs                       # Visor de imagenes
+    flameshot                    # Catura de pantalla
 )
 
 # --- EJECUCIÓN ---

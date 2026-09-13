@@ -38,6 +38,8 @@ DESARROLLO=(
 MULTIMEDIA=(
     mpv vlc                      # Reproductores de video
     cmus                         # Reproductor de musica x terminal
+    nomacs                       # Visor de imagenes
+    flameshot                    # Catura de pantalla
 )
 
 # --- EJECUCIÓN ---

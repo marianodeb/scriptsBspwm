@@ -74,19 +74,6 @@ sudo mv "$TMP_DIR/kitty-md.py" /usr/local/bin/kitty-md
 rm -rf "$TMP_DIR"
 
 echo "*********************************************************"
-echo "********************* STARSHIP **************************"
-echo "*********************************************************"
-
-curl -sS https://starship.rs/install.sh | sh -s -- -y
-
-if ! grep -q 'starship init bash' ~/.bashrc; then
-  echo 'eval "$(starship init bash)"' >>~/.bashrc
-fi
-
-mkdir -p ~/.config
-starship preset gruvbox-rainbow -o ~/.config/starship.toml
-
-echo "*********************************************************"
 echo "**************** FUENTES Y CONFIG KITTY *****************"
 echo "*********************************************************"
 
@@ -119,6 +106,16 @@ italic_font      auto
 bold_italic_font auto
 font_size        11.0
 EOF
+
+echo "*********************************************************"
+echo "********************* STARSHIP **************************"
+echo "*********************************************************"
+
+curl -sS https://starship.rs/install.sh | sh -s -- -y
+
+echo 'eval "$(starship init bash)"' >> ~/.bashrc
+
+starship preset gruvbox-rainbow -o ~/.config/starship.toml
 
 echo "--------------------------------------------------------"
 echo " ¡Instalación completada! Reiniciá tu terminal o Kitty. "
